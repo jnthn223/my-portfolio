@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter_Tight } from "next/font/google";
 import "./globals.css";
+import Image from "next/image";
+import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const interTight = Inter_Tight({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`container ${interTight.className}`}>
+        <header className="flex justify-between items-center border-b border-[#8B8A8A]">
+          <Image src="/logo.svg" alt="logo" width={100} height={78}/>
+          <nav>
+            <ul className="flex items-center gap-x-8">
+              <li><Link href="#">Home</Link></li>
+              <li><Link href="#">Services</Link></li>
+              <li><Link href="#">Projects</Link></li>
+              <li><Link href="#">About</Link></li>
+            </ul>
+          </nav>
+        </header>
+        {children}
+      </body>
     </html>
   );
 }
